@@ -8,17 +8,8 @@ import smbus
 
 class Adafruit_I2C(object):
 
-  @staticmethod
-  def getEdisonRevision():
-    "Gets the version number of the Edison"
-    return 0 
-
   def __init__(self, address, busnum = 1, debug=False):
     self.address = address
-    # By default, the correct I2C bus is auto-detected using /proc/cpuinfo
-    # Alternatively, you can hard-code the bus version below:
-    # self.bus = smbus.SMBus(0); # Force I2C0 (early 256MB Pi's)
-    # self.bus = smbus.SMBus(1); # Force I2C1 (512MB Pi's)
     self.bus = smbus.SMBus(busnum)
     self.debug = debug
 
@@ -134,7 +125,7 @@ class Adafruit_I2C(object):
 
 if __name__ == '__main__':
   try:
-    bus = Adafruit_I2C(address=0, busnum = 1)
+    bus = Adafruit_I2C(address=0x40, busnum = 1)
     print "Default I2C bus is accessible"
   except:
     print "Error accessing default I2C bus"
