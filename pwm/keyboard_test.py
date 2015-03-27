@@ -18,7 +18,7 @@ pwmStop = 0
 motorChannel = 0
 pwm.setPWMFreq(400)                        # Set frequency to x Hz
 pwm.setPWM(motorChannel, 0, pwmMin)  # Set to min (thrtle down)
-time.sleep(1)  # Wait for motors to be armed
+time.sleep(2)  # Wait for motors to be armed
 
 drone_vars = shelve.open('drone_vars')
 stdscr = curses.initscr()
@@ -37,7 +37,7 @@ pwm_pulse_high = 3047
 
 def close_safely():
     drone_vars.close()
-    pwm.setPWM(motorChannel, 0, servoStop)
+    pwm.setPWM(motorChannel, 0, pwmStop)
     curses.endwin()
     print('Stopping motor')
 
