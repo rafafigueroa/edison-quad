@@ -10,7 +10,7 @@ import numpy as np
 # Initialise the PWM device using the default address
 pwm = PWM(0x40, debug=False)
 
-pulseMin = 1735  # Min pulse length out of 4096
+pulseMin = 2000  # Min pulse length out of 4096
 pulseLow = 2500
 pulseMax = 3047
 pulseStop = 0
@@ -30,8 +30,6 @@ stdscr.addstr(0, 10, "Hit 'q' to quit, 'j' to go down and 'k' to go up")
 stdscr.refresh()
 
 key = ''
-pwm_pulse_low = 1735
-pwm_pulse_high = 3047
 
 def close_safely():
     drone_vars.close()
@@ -40,34 +38,34 @@ def close_safely():
     print('Stopping motor')
 
 cal_index = 3
-pwm_pulse = 2000
+pwm_pulse = 2200
 
 try:
     while key != ord('q'):
         key = stdscr.getch()
         stdscr.refresh()
-        cal_rpm = cal_index * 1000
+        cal_rpm = str(cal_index * 1000)
 
         if key == curses.KEY_LEFT: 
             pwm_pulse = pwm_pulse - 1
-            stdscr.addstr(cal_index, 20, 'cal rpm: ' + str(cal_rpm)) + \
+            stdscr.addstr(cal_index, 20, 'cal rpm: ' + cal_rpm + \
                                          ' pulse: ' + str(pwm_pulse))
             pwm.setPWM(motorChannel, 0, pwm_pulse)
 
         elif key == curses.KEY_RIGHT: 
             pwm_pulse = pwm_pulse + 1
-            stdscr.addstr(cal_index, 20, 'cal rpm: ' + str(cal_rpm) + \
+            stdscr.addstr(cal_index, 20, 'cal rpm: ' + cal_rpm + \
                                          ' pulse: ' + str(pwm_pulse))
             pwm.setPWM(motorChannel, 0, pwm_pulse)
 
         elif key == ord('j'):
-            stdscr.addstr(cal_index, 20, 'saved rpm: ' + str(cal_rpm) + \
+            stdscr.addstr(cal_index, 20, 'saved rpm: ' + cal_rpm + \
                                          ' pulse: ' + str(pwm_pulse))
             drone_vars[cal_rpm] = pwm_pulse
             cal_index = cal_index + 1
  
         elif key == ord('k'):
-            stdscr.addstr(cal_index, 20, 'saved rpm: ' + str(cal_rpm) + \
+            stdscr.addstr(cal_index, 20, 'saved rpm: ' + cal_rpm + \
                                          ' pulse: ' + str(pwm_pulse))
             drone_vars[cal_rpm] = pwm_pulse
             cal_index = cal_index - 1
