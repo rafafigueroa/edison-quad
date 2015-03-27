@@ -10,14 +10,14 @@ import numpy as np
 # Initialise the PWM device using the default address
 pwm = PWM(0x40, debug=False)
 
-pwmMin = 1735  # Min pulse length out of 4096
-pwmLow = 2500
-pwmMax = 3047
-pwmStop = 0
+pulseMin = 1735  # Min pulse length out of 4096
+pulseLow = 2500
+pulseMax = 3047
+pulseStop = 0
 
 motorChannel = 0
-pwm.setPWMFreq(400)                        # Set frequency to x Hz
-pwm.setPWM(motorChannel, 0, pwmMin)  # Set to min (thrtle down)
+pwm.setPWMFreq(400)                    # Set frequency to x Hz
+pwm.setPWM(motorChannel, 0, pulseMin)  # Set to min (thrtle down)
 time.sleep(2)  # Wait for motors to be armed
 
 drone_vars = shelve.open('drone_vars')
@@ -37,7 +37,7 @@ pwm_pulse_high = 3047
 
 def close_safely():
     drone_vars.close()
-    pwm.setPWM(motorChannel, 0, pwmStop)
+    pwm.setPWM(motorChannel, 0, pulseStop)
     curses.endwin()
     print('Stopping motor')
 
