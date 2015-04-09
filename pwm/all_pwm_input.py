@@ -18,9 +18,12 @@ pulseMax = 3047
 pulseStop = 0
 
 motorChannel = 1
+motors = [0, 1, 2, 3]
 
 pwm.setPWMFreq(400)                        # Set frequency to x Hz
-pwm.setPWM(motorChannel, 0, pulseMin)  # Set to min (thrtle down)
+for mc in motors:
+    pwm.setPWM(mc, 0, pulseMin)  # Set to min (thrtle down)
+
 time.sleep(2)  # Wait for motors to be armed
 
 drone_vars = shelve.open('drone_vars')
@@ -37,16 +40,19 @@ try:
         print 'pulse_input:', pulse_input
 
         if pulse_input > pulseMin and pulse_input < pulseMax:
-            pwm.setPWM(motorChannel, 0, int(pulse_input))
+            for mc in motors:
+                pwm.setPWM(mc, 0, int(pulse_input))
         else:
             print 'pulse input wrong range', pulse_input
-            pwm.setPWM(motorChannel, 0, pulseStop)
+            for mc in motors:
+                pwm.setPWM(motorChannel, 0, pulseStop)
             drone_vars.close()
             break
 
  # Catch an interrupt and set the motor to stop
 except KeyboardInterrupt:
-    pwm.setPWM(motorChannel, 0, pulseStop)
+    for mc in motors:
+        pwm.setPWM(mc, 0, pulseStop)
     drone_vars.close()
     print('Stopping motor')
 

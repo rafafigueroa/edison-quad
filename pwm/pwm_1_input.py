@@ -17,7 +17,7 @@ pulseLow = 2500
 pulseMax = 3047
 pulseStop = 0
 
-motorChannel = 1
+motorChannel = 0
 
 pwm.setPWMFreq(400)                        # Set frequency to x Hz
 pwm.setPWM(motorChannel, 0, pulseMin)  # Set to min (thrtle down)
