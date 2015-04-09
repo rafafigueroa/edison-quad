@@ -4,4 +4,14 @@
 @author: Rafael Figueroa
 """
 
-import 
+from time import sleep
+import imu/imu_fusion
+
+
+for t in range(0, 10):
+    print imu_output
+    sleep(0.1)
+
+
+
+
