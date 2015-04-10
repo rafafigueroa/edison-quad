@@ -5,11 +5,12 @@
 """
 
 from time import sleep
-import imu/imu_fusion
+import imu_fusion
+from imu_fusion import imu_output
 
 
 for t in range(0, 10):
-    print imu_output
+    print imu_output()
     sleep(0.1)
 
 
