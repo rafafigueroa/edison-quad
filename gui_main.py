@@ -20,6 +20,14 @@ from viz_quad import create_viz_quad
 class GUI_quad(object):
 
     def __init__(self):
+        
+        self.x = 0
+        self.y = 0
+        self.z = 0
+        self.hx = 0
+        self.hy = 0
+        self.hz = 0
+
         # Qt Initialization (once per application)
         self.app = QtGui.QApplication([])
 
@@ -61,22 +69,37 @@ class GUI_quad(object):
         self.timer.start(50.0) # in ms
 
         self.counter = 0
-        
+    
+    def set_state(self, X):
+        self.x = X[0]
+        self.y = X[1]
+        self.z = X[2]
+        self.hx = X[3]
+        self.hy = X[4]
+        self.hz = X[5]
+        print self.hx, self.hy, self.hz
+
     def update_gui(self):
         """Updates all moving parts of the GUI.
         Called from the QtCore Timer at regular intervals"""
         # self.viz_quad.rotate(3 + self.counter, 1, 0, 0)
+        roll = self.hx
+        pitch = self.hy
+        yaw = self.hz 
+
+        print roll, pitch, yaw
+
         tr = pg.Transform3D()
-        tr.rotate(45, 1, 0, 0)
+        # TODO: Check rotation with model
+        # Now using Ry(pitch)*Rx(roll)*Rz(yaw)*coordinate
+        tr.rotate(np.degrees(yaw), 0, 0, 1)
+        tr.rotate(np.degrees(roll), 1, 0, 0)
+        tr.rotate(np.degrees(pitch), 0, 1, 0)
+        
         self.viz_quad.setTransform(tr)
         self.app.processEvents()
 
     def run(self):
         self.app.exec_()
         
-    
-# Script
-GUI = GUI_quad()
-GUI.run()
-
         
