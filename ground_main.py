@@ -6,16 +6,23 @@ Ground Station
 """
 
 from time import sleep
-from gui_main import GUI_quad
+from gui_ground import GUI_quad
+from socket_ground import Socket_ground
 import numpy as np
     
 # Script
 GUI = GUI_quad()
+sck = Socket_ground()
 
 for a in range(0, 100):
     
     X = np.array([0, 0, 0, np.pi/(a+4.0), 0, np.pi/2.0])
     GUI.set_state(X)
     GUI.update_gui()
+    drone_data = sck.receive_data()
+    print drone_data
+
     sleep(0.1)
+
+sck.close_socket()
 
