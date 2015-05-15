@@ -29,7 +29,7 @@ class Socket_ground(object):
         self.data = self.conn.recv(1024)
         print 'Received:', self.data
 
-        if not data: 
+        if not self.data: 
             print 'no more data'
             return None
         else:
