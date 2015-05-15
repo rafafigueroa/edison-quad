@@ -25,9 +25,8 @@ class Socket_ground(object):
         print 'Connected by', self.addr
 
     def receive_data(self):
-        print 'receiving data'
-        self.data = self.conn.recv(1024)
-        print 'Received:', self.data
+        self.data = self.conn.recv()
+        print 'Rcv ', self.data
 
         if not self.data: 
             print 'no more data'
@@ -36,7 +35,7 @@ class Socket_ground(object):
             return self.data
 
     def close_socket(self):
-            self.conn.close()
+        self.conn.close()
 
     def receive_message_counting(self):
         # TODO: Verify if receiving at middle of message

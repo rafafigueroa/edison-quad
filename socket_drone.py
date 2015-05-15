@@ -27,11 +27,10 @@ class Socket_drone(object):
 
     def send_data(self, msg):
         fusionPose = msg
-        fus_msg = "r: %f p: %f y: %f" % (math.degrees(fusionPose[0]), 
+        fus_msg = "r:%f p:%f y:%f \n" % (math.degrees(fusionPose[0]), 
         math.degrees(fusionPose[1]), math.degrees(fusionPose[2]))
         # Information sent through socket to gnd station
-        self.sock.sendall('hello ground')
         self.sock.sendall(fus_msg)
 
     def close_socket(self):
-        sock.close()
+        self.sock.close()

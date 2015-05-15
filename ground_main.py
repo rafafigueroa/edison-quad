@@ -22,9 +22,7 @@ for a in range(0, 100):
         GUI.set_state(X)
         GUI.update_gui()
         drone_data = sck.receive_data()
-        print drone_data
-
-        sleep(0.1)
+        #sleep(0.1)
 
     except KeyboardInterrupt:
         print 'closing socket'

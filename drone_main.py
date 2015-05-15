@@ -17,7 +17,7 @@ for t in range(0, 100):
 
     try:
         imu_data = imu_output()
-        print imu_data
+        # print imu_data
         sck.send_data(imu_data)
         sleep(0.1)
 
