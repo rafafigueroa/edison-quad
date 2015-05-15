@@ -19,16 +19,18 @@ while True:
     
     try:
         drone_msg = sck.receive_data()
-        msg_list = drone_msg.split(' ')
-        hx = float(msg_list[0].split(':')[1])
-        hy = float(msg_list[1].split(':')[1])
-        hz = float(msg_list[2].split(':')[1])
+        if drone_msg is not None:
+            msg_list = drone_msg.split(' ')
+            hx = float(msg_list[0].split(':')[1])
+            hy = float(msg_list[1].split(':')[1])
+            hz = float(msg_list[2].split(':')[1])
 
-        X = np.array([0, 0, 0, hx, hy, hz])
-        GUI.set_state(X)
-        GUI.update_gui()
-        
-        #sleep(0.1)
+            X = np.array([0, 0, 0, hx, hy, hz])
+            GUI.set_state(X)
+            GUI.update_gui()
+            
+        else:
+            print 'no data received'
 
     except KeyboardInterrupt:
         print 'closing socket'
