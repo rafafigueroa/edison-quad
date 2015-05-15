@@ -14,23 +14,15 @@ from socket_drone import Socket_drone
 sck = Socket_drone()
 
 for t in range(0, 100):
-<<<<<<< HEAD
-    imu_data = imu_output()
-    print imu_data
-    sck.send_data(imu_data)
-    sleep(0.1)
 
-sck.close_socket()
-=======
     try:
         imu_data = imu_output()
         print imu_data
         sck.send_data(imu_data)
         sleep(0.1)
+
     except KeyboardInterrupt:
         print 'closing socket'
         sck.close_socket()
         sys.exit()
-
->>>>>>> 2673b8bc3fa516cd68de99849612f8acde9dd035
 
