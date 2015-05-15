@@ -18,10 +18,16 @@ sck = Socket_ground()
 for a in range(0, 100):
     
     try:
-        X = np.array([0, 0, 0, np.pi/(a+4.0), 0, np.pi/2.0])
+        drone_msg = sck.receive_data()
+        msg_list = msg_data.split(' ')
+        hx = float(msg_list[0].split(':')[1])
+        hy = float(msg_list[1].split(':')[1])
+        hz = float(msg_list[2].split(':')[1])
+
+        X = np.array([0, 0, 0, hx, hy, hz])
         GUI.set_state(X)
         GUI.update_gui()
-        drone_data = sck.receive_data()
+        
         #sleep(0.1)
 
     except KeyboardInterrupt:
