@@ -13,7 +13,7 @@ from imu_fusion import imu_output
 from socket_drone import Socket_drone
 sck = Socket_drone()
 
-for t in range(0, 100):
+while True:
 
     try:
         imu_data = imu_output()
