@@ -19,9 +19,11 @@ class Socket_drone(object):
 
     def __init__(self):
         # --- Socket configuration ---
+        print 'Connecting to ground station'
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socket.setdefaulttimeout(1.0)
         self.sock.connect(('192.168.0.10', 50007))
+        print 'Connected to ground station'
 
     def send_data(self, msg):
         fusionPose = msg
