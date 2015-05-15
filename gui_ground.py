@@ -77,7 +77,7 @@ class GUI_quad(object):
         self.hx = X[3]
         self.hy = X[4]
         self.hz = X[5]
-        print self.hx, self.hy, self.hz
+        # print self.hx, self.hy, self.hz
 
     def update_gui(self):
         """Updates all moving parts of the GUI.
@@ -87,7 +87,7 @@ class GUI_quad(object):
         pitch = self.hy
         yaw = self.hz 
 
-        print roll, pitch, yaw
+        # print roll, pitch, yaw
 
         tr = pg.Transform3D()
         # TODO: Check rotation with model

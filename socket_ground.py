@@ -25,7 +25,7 @@ class Socket_ground(object):
         print 'Connected by', self.addr
 
     def receive_data(self):
-        self.data = self.conn.recv()
+        self.data = self.conn.recv(1024)
         print 'Rcv ', self.data
 
         if not self.data: 
