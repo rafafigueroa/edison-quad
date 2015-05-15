@@ -15,7 +15,7 @@ import numpy as np
 GUI = GUI_quad()
 sck = Socket_ground()
 
-for a in range(0, 100):
+while True:
     
     try:
         drone_msg = sck.receive_data()
