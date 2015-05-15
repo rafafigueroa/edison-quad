@@ -18,11 +18,11 @@ class Socket_ground(object):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.bind((HOST, PORT))
         socket.setdefaulttimeout(1.0)
-        # Listen for incoming connections
+        print 'Listen for incoming connections'
         self.sock.listen(1)  
         # Wait for connection
         self.conn, self.addr = self.sock.accept()
-        print 'Connected by', addr
+        print 'Connected by', self.addr
 
     def receive_data(self):
         self.data = self.conn.recv(1024)

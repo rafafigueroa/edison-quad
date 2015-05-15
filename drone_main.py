@@ -20,6 +20,3 @@ for t in range(0, 100):
 
 sck.close_socket()
 
-
-
-

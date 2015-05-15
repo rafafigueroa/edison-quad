@@ -5,6 +5,7 @@
 Ground Station 
 """
 
+import sys
 from time import sleep
 from gui_ground import GUI_quad
 from socket_ground import Socket_ground
@@ -16,13 +17,17 @@ sck = Socket_ground()
 
 for a in range(0, 100):
     
-    X = np.array([0, 0, 0, np.pi/(a+4.0), 0, np.pi/2.0])
-    GUI.set_state(X)
-    GUI.update_gui()
-    drone_data = sck.receive_data()
-    print drone_data
+    try:
+        X = np.array([0, 0, 0, np.pi/(a+4.0), 0, np.pi/2.0])
+        GUI.set_state(X)
+        GUI.update_gui()
+        drone_data = sck.receive_data()
+        print drone_data
 
-    sleep(0.1)
+        sleep(0.1)
 
-sck.close_socket()
+    except KeyboardInterrupt:
+        print 'closing socket'
+        sck.close_socket()
+        sys.exit()
 
