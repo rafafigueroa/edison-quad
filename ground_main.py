@@ -19,7 +19,7 @@ for a in range(0, 100):
     
     try:
         drone_msg = sck.receive_data()
-        msg_list = msg_data.split(' ')
+        msg_list = drone_msg.split(' ')
         hx = float(msg_list[0].split(':')[1])
         hy = float(msg_list[1].split(':')[1])
         hz = float(msg_list[2].split(':')[1])
