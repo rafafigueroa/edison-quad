@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import shelve
-import matplotlib.pyplot as plt
+from __future__ import division
 import numpy as np
 
 rho = 1.116  # kg/m^3
@@ -15,4 +14,17 @@ print 'b: (N/rpm^2)', b
 omega_h = np.sqrt(1.2*9.81/float(4*b))
 print 'omega_h: rpm', omega_h
 
+# T = Ct*rho*(D**4)*w**2
+# T = kf*w**2
+# kf = Ct*rho*(D**4)
+# kf = b
 
+Ixx = 0.00232
+Iyy = 0.00232
+Izz = 0.00400
+
+Ixx_inv = 1/Ixx
+Iyy_inv = 1/Iyy
+Izz_inv = 1/Izz
+
+print 'Ixx_inv, Iyy_inv, Izz_inv', Ixx_inv, Iyy_inv, Izz_inv
